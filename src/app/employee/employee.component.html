@@ -1,0 +1,56 @@
+<mat-toolbar color="primary">
+<span>ImageViewer</span>
+<span class="spacer"></span>
+<button mat-icon-button [matMenuTriggerFor]="menu">
+<mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+<button mat-menu-item>
+<mat-icon>fingerprint</mat-icon>
+<span>Login</span>
+</button>
+<button mat-menu-item>
+<mat-icon>announcement</mat-icon>
+ <span>Issues</span>
+</button>
+<button mat-menu-item>
+<mat-icon>notifications_off</mat-icon>
+<span>Disable Alert</span>
+</button>
+</mat-menu>
+</mat-toolbar>
+<!--this is the  second part of my simple application where body is hold-->
+<mat-tab-group>
+<mat-tab label="Gallery">
+<mat-card *ngFor="let employee of employees; let i=index">
+<img mat-card-image src="{{employee.img}}">
+<mat-card-content>
+<p>{{employee.description}}</p>
+</mat-card-content>
+<mat-card-actions>
+<button mat-button (click)="likeMe(i)" >
+<i class="material-icons mat-18" [class.red-color]="employee.liked=='1'">
+ favorite
+</i>LIKE
+</button>
+<button mat-button (click)="deleteMe(i)" >
+ <i class="material-icons mat-18" >
+ delete
+</i>Delete
+</button> 
+</mat-card-actions>
+</mat-card>
+</mat-tab>
+<!--tab two are here you can modify this setting tab -->
+ <mat-tab label="Settings">
+<div id="page-padding">
+<h1>Settings</h1>
+<p>Here you can control the various settings associated with your app.there is no need to hit
+a save button,because the value are updated automatically.</p>
+<label>Number of Thumbnails</label>
+<mat-slider max="100" min="0" showTicks="true" step= "1" thumbLabel="true"value="18"></mat-slider>
+<span></span><br>
+<mat-slide-toggle >some settings</mat-slide-toggle>
+</div>
+</mat-tab>
+</mat-tab-group>
